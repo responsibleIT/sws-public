@@ -14,6 +14,8 @@ fastify.register(require('@fastify/view'), {
     },
 });
 
+fastify.register(require('@fastify/cors'));
+
 fastify.setNotFoundHandler((request, reply) => {
     reply.status(404).view('/views/error.eta', {title: 'Error | Six Word Story', authenticated: false});
 });
