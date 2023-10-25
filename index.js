@@ -28,19 +28,19 @@ const start = async () => {
         .setKey(process.env.AW_API_KEY);
 
     const database = new sdk.Databases(client);
-    const stories = (await database.listDocuments(process.env.AW_DATABASE_ID, process.env.AW_SWS_COLLECTION_ID)).documents;
 
     fastify.get('/', async (request, reply) => {
+        const stories = (await database.listDocuments(process.env.AW_DATABASE_ID, process.env.AW_SWS_COLLECTION_ID)).documents;
         return reply.view('/views/index.eta', {story: stories[0].story});
     });
 
     fastify.get('/:id', async (request, reply) => {
         let id = request.params.id;
-        let exists = stories.filter((story) => story.$id === id);
-        if(exists.length === 0){
+        try {
+            let document = await database.getDocument(process.env.AW_DATABASE_ID, process.env.AW_SWS_COLLECTION_ID, id);
+            return reply.view('/views/index.eta', {story: document.story});
+        } catch (error) {
             return reply.view('/views/error.eta', {title: 'Error | Six Word Story', authenticated: false});
-        } else {
-            return reply.view('/views/index.eta', {story: exists[0].story});
         }
     });
 
