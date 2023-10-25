@@ -1,0 +1,20 @@
+{
+  "name": "sws-public",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon -e js,json,html,eta start index.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/static": "^6.11.2",
+    "@fastify/view": "^8.2.0",
+    "dotenv": "^16.3.1",
+    "eta": "^3.1.1",
+    "fastify": "^4.24.3",
+    "node-appwrite": "^11.0.0"
+  }
+}
