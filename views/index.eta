@@ -20,7 +20,7 @@
 </head>
 <body>
 <main id="app" class="container" x-data="{sentimentopen: false, argopen: false}">
-    <p class="word-loader-style"><%= it.story %></p>
+    <pre class="word-loader-style"><%= it.story %></pre>
     <footer>
         <div style="display: flex; gap: 24px" class="animate__animated animate__fadeIn">
         </div>

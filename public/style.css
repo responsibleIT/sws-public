@@ -279,3 +279,7 @@ fieldset {
 
 #save-poem {
 }
+
+pre {
+    font-family: 'Inter', sans-serif;
+}
