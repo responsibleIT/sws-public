@@ -2,62 +2,65 @@
 <html data-theme="light" lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link rel="stylesheet" href="/public/style.css" />
-  <script src="https://unpkg.com/htmx.org@1.8.6"></script>
-  <script src="https://unpkg.com/htmx.org/dist/ext/disable-element.js"></script>
-  <script src="https://unpkg.com/htmx.org/dist/ext/sse.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-  <title><%= it.title %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="/public/style.css"/>
+    <script src="https://unpkg.com/htmx.org@1.8.6"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/disable-element.js"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/sse.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <title><%= it.title %></title>
 </head>
 
 <body>
-  <main id="app" class="container" x-data="{sentimentopen: false, argopen: false}">
+<main id="app" class="container" x-data="{sentimentopen: false, argopen: false}">
     <div id="choice-container" x-transition:enter="animate__animated animate__zoomIn">
-      <svg class="htmx-indicator spinner" aria-busy="true" width="48" height="48" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <style>
-          .spinner_b2T7 {
-            animation: spinner_xe7Q 1.5s linear infinite
-          }
+        <svg class="htmx-indicator spinner" aria-busy="true" width="48" height="48" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+            <style>
+                .spinner_b2T7 {
+                    animation: spinner_xe7Q 1.5s linear infinite
+                }
 
-          .spinner_YRVV {
-            animation-delay: -1s
-          }
+                .spinner_YRVV {
+                    animation-delay: -1s
+                }
 
-          .spinner_c9oY {
-            animation-delay: -.9s
-          }
+                .spinner_c9oY {
+                    animation-delay: -.9s
+                }
 
-          @keyframes spinner_xe7Q {
+                @keyframes spinner_xe7Q {
 
-            93.75%,
-            100% {
-              r: 3px
-            }
+                    93.75%,
+                    100% {
+                        r: 3px
+                    }
 
-            46.875% {
-              r: .2px
-            }
-          }
-        </style>
-        <circle class="spinner_b2T7" cx="4" cy="12" r="3" />
-        <circle class="spinner_b2T7 spinner_YRVV" cx="12" cy="12" r="3" />
-        <circle class="spinner_b2T7 spinner_c9oY" cx="20" cy="12" r="3" />
-      </svg>
-      <div x-show="sentimentopen" id="opinion-container">
-        <form>
-          <fieldset id="opinion" style="height: 100%">
-          </fieldset>
-          <input type="hidden" name="statement" value="<%= it.statement %>">
-        </form>
-      </div>
+                    46.875% {
+                        r: .2px
+                    }
+                }
+            </style>
+            <circle class="spinner_b2T7" cx="4" cy="12" r="3"/>
+            <circle class="spinner_b2T7 spinner_YRVV" cx="12" cy="12" r="3"/>
+            <circle class="spinner_b2T7 spinner_c9oY" cx="20" cy="12" r="3"/>
+        </svg>
+        <div x-show="sentimentopen" id="opinion-container">
+            <form>
+                <fieldset id="opinion" style="height: 100%">
+                </fieldset>
+                <input type="hidden" name="statement" value="<%= it.statement %>">
+            </form>
+        </div>
     </div>
     <form id="main-form" hx-indicator=".spinner" class="animate__animated animate__fadeIn animate__slow">
       <pre id="text">
@@ -66,46 +69,49 @@
             return `<input id="${tagWord+index}" class="rep" name="rep" type="radio"
                            value="${tagWord+index}" hx-post="/alt" hx-target="#opinion" hx-swap="innerHTML"
                            hx-ext="disable-element" hx-disable-element="#text"> <label
-                class="rep-label"
-                x-on:click="sentimentopen = ! sentimentopen"
-                for="${tagWord+index}">${word}</label>`
+              class="rep-label"
+              x-on:click="sentimentopen = ! sentimentopen"
+              for="${tagWord+index}">${word}</label>`
             }); %>
         <% statement.forEach((word) => { %>
         <%~ word %>
         <% }); %>
       </pre>
-      <input type="hidden" name="statement" value="<%= it.statement %>">
+        <input type="hidden" name="statement" value="<%= it.statement %>">
     </form>
-    <pre class="animate__animated animate__fadeInRight" id="word-loader" style="opacity: 0;"></pre>
-  </main>
-  <footer>
+    <pre class="animate__animated animate__fadeInRight" id="word-loader" style="display: none;"></pre>
+</main>
+<footer>
     <div style="display: flex; gap: 24px" class="animate__animated animate__fadeIn">
     </div>
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
-      <img style="height: 7vh; object-fit: fill" src="/public/logo.png" />
+        <img style="height: 7vh; object-fit: fill" src="/public/logo.png"/>
     </div>
-  </footer>
-  <script>
+</footer>
+<script>
     try {
-      let socket = io();
-      socket.on('part', function(part) {
-        document.getElementById("main-form").style.display = "none";
+        let socket = io();
+        socket.on('part', function (part) {
+            document.getElementById("main-form").style.display = "none";
+            document.getElementById("word-loader").style.display = "block";
 
-        if (part !== "DONE") {
-          document.getElementById("word-loader").innerHTML = part;
-        } else {
-          document.getElementById("choice-container").classList.add("animate__animated");
-          document.getElementById("choice-container").classList.add("animate__slow");
-          document.getElementById("choice-container").classList.add("animate__fadeOutUp");
+            if (part !== "DONE") {
+                document.getElementById("word-loader").innerHTML = part;
+                document.getElementById("word-loader").scrollTo(0, document.getElementById("word-loader").scrollTop + 30)
+            } else {
+                document.getElementById("choice-container").classList.add("animate__animated");
+                document.getElementById("choice-container").classList.add("animate__slow");
+                document.getElementById("choice-container").classList.add("animate__fadeOutUp");
 
-          document.getElementById("word-loader").classList.add("animate__animated");
-          document.getElementById("word-loader").classList.add("animate__slow");
-          document.getElementById("word-loader").classList.add("animate__fadeOut");
+                document.getElementById("word-loader").classList.add("animate__animated");
+                document.getElementById("word-loader").classList.add("animate__slow");
+                document.getElementById("word-loader").classList.add("animate__fadeOut");
 
-        }
-      });
-    } catch (e) {}
-  </script>
+            }
+        });
+    } catch (e) {
+    }
+</script>
 </body>
 
 </html>

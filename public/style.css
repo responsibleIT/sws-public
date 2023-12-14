@@ -74,7 +74,8 @@ pre {
   white-space: pre-line;
   height: 325px;
   padding: 1em 0em 1em 0em;
-  margin: 0;
+  margin: 1em 0 0 0;
+  scroll-behavior: smooth;
 }
 
 .container {
