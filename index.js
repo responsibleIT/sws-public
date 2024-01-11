@@ -50,7 +50,7 @@ const start = async () => {
         process.env.AW_SWS_COLLECTION_ID
       )
     ).documents;
-    return reply.view("/views/index.eta", { statement: stories[0].story });
+    return reply.view("/views/index.eta", { statement: stories[stories.length -1].story });
   });
 
   fastify.get("/:id", async (request, reply) => {
