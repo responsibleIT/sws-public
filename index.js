@@ -106,7 +106,7 @@ const start = async () => {
       data.alternatives
         .map((word, index) => {
           return `<div id="arg${index}" class="animate__animated animate__fadeInLeft">
-                         <input type="radio" id="ment${index}" name="argument" value="${word.word}" hx-post="/placearg" hx-refresh="true" hx-target="body" hx-swap="innerHTML" hidden hx-indicator=".spinner" hx-ext="disable-element" hx-disable-element="#arguments">
+                         <input type="radio" id="ment${index}" name="argument" value="${word.word}" hx-post="/placearg" hx-refresh="true" hx-target="body" hx-swap="innerHTML" hidden hx-indicator=".spinner">
                          <input hidden name="wordindex" value="${word.wordindex}">
                          <label for="ment${index}" class="argument second-argument-row animate_animated animate__fadeInDown">
                              ${word.word}

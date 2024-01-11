@@ -72,7 +72,7 @@ fieldset {
 pre {
   font-family: "Inter", sans-serif;
   white-space: pre-line;
-  height: 325px;
+  height: 70vh;
   padding: 1em 0em 1em 0em;
   margin: 1em 0 0 0;
   scroll-behavior: smooth;
