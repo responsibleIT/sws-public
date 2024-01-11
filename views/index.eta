@@ -97,7 +97,7 @@
 
             if (part !== "DONE") {
                 document.getElementById("word-loader").innerHTML = part;
-                document.getElementById("word-loader").scrollTo(0, document.getElementById("word-loader").scrollTop + 30)
+                document.getElementById("word-loader").scrollTo(0, document.getElementById("word-loader").scrollTop + 1000)
             } else {
                 document.getElementById("choice-container").classList.add("animate__animated");
                 document.getElementById("choice-container").classList.add("animate__slow");
