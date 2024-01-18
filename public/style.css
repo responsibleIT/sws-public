@@ -196,17 +196,14 @@ input[type="radio"]:checked + label {
 
 #main-form,
 #word-loader {
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: start;
   margin-bottom: 0;
   font-size: var(--big-font);
   line-height: 200%;
-}
-
-#main-form::-webkit-scrollbar {
-  display: none;
 }
 
 footer {
@@ -285,4 +282,17 @@ footer {
 }
 
 #save-poem {
+}
+
+/* scrollbar style */
+#main-form::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+  background-color: #cccccc;
+}
+
+#main-form::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
