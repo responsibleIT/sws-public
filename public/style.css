@@ -15,6 +15,10 @@
 * {
   /*cursor: none;*/
 }
+img {
+  pointer-events: none;
+  user-select: none;
+}
 
 html,
 body {
@@ -59,6 +63,7 @@ fieldset {
   display: flex;
   align-items: center;
   margin-top: -100px;
+  margin-bottom: 60px;
 }
 
 #opinion-container {
@@ -287,7 +292,7 @@ footer {
 /* scrollbar style */
 #main-form::-webkit-scrollbar {
   -webkit-appearance: none;
-  width: 7px;
+  width: 16px;
   background-color: #cccccc;
 }
 
